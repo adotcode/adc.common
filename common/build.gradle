@@ -1,0 +1,6 @@
+description = 'Common Utils'
+//jar SKIPPED 问题,添加如下配置(不设置可能会无法打jar)
+jar.enabled = true
+//本模块依赖
+dependencies {
+}

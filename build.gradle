@@ -1,0 +1,66 @@
+description = 'Common Parent'
+def jdkVersion = '12.0'
+buildscript {
+    ext {
+        springBootVersion = '2.2.1.RELEASE'
+        commonsLang3 = '3.9'
+        junit5Version = '5.5.0'
+        lombok = '1.18.10'
+    }
+    repositories {
+        mavenLocal()
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+// 所有模块/项目的通用配置
+allprojects {
+    group 'com.adotcode.framework'
+    version '0.0.2-SNAPSHOT'
+    apply plugin: 'idea'
+    apply plugin: 'java'
+    repositories {
+        mavenLocal()
+        jcenter()
+        mavenCentral()
+    }
+    //指定JDK版本
+    sourceCompatibility = jdkVersion
+    targetCompatibility = jdkVersion
+    //指定编码格式
+    [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
+}
+//子模块/项目的统一配置
+subprojects {
+    apply plugin: 'maven-publish'
+    //jar 部署
+    publishing {
+        repositories {
+            maven {
+                name = "GitHub"
+                url = uri("https://maven.pkg.github.com/adotcode/adc.framework")
+                credentials {
+                    username = System.getenv('GITHUB_USERNAME')
+                    password = System.getenv('GITHUB_TOKEN')
+                }
+            }
+        }
+        publications {
+            gpr(MavenPublication) {
+                from(components.java)
+            }
+        }
+    }
+    dependencies {
+        compile("org.projectlombok:lombok:$lombok")
+        compile("org.springframework.boot:spring-boot-starter-web:$springBootVersion")
+        // Apache Commons
+        compile("org.apache.commons:commons-lang3:$commonsLang3")
+        // 单元测试
+        testCompile("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
+        testCompile("org.junit:junit-bom:${junit5Version}")
+    }
+}
