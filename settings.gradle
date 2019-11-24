@@ -8,5 +8,5 @@
  */
 
 rootProject.name = 'com.adotcode.framework'
-include 'common'
+include 'adc-common'
 
