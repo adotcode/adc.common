@@ -1,6 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="com.adotcode.framework.common:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/com_adotcode_framework_common_jar</output-path>
-    <root id="archive" name="com.adotcode.framework.common.jar" />
-  </artifact>
-</component>
