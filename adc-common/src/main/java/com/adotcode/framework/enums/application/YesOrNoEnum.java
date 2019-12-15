@@ -37,6 +37,11 @@ public enum YesOrNoEnum implements IEnum<Integer> {
     this.displayName = displayName;
   }
 
+  @Override
+  public Integer getValue() {
+    return value;
+  }
+
   /**
    * 获取枚举名称
    *
@@ -45,5 +50,11 @@ public enum YesOrNoEnum implements IEnum<Integer> {
   @Override
   public String getName() {
     return name();
+  }
+
+
+  @Override
+  public String getDisplayName() {
+    return displayName;
   }
 }

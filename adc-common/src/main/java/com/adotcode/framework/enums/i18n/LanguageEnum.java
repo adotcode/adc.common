@@ -118,4 +118,9 @@ public enum LanguageEnum implements IEnum<String> {
   public String getName() {
     return name();
   }
+
+  @Override
+  public String getDisplayName() {
+    return displayName;
+  }
 }

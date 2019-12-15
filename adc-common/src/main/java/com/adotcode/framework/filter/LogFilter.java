@@ -23,17 +23,17 @@ import org.springframework.web.filter.OncePerRequestFilter;
 @EqualsAndHashCode(callSuper = true)
 public class LogFilter extends OncePerRequestFilter {
 
-  private final String responseHeader;
-  private final String requestHeader;
-  private final String mdcTrackKey;
+  private String responseHeader;
+  private String requestHeader;
+  private String mdcTrackKey;
 
   @Override
   protected void doFilterInternal(
-      @NonNull final HttpServletRequest request,
-      @NonNull final HttpServletResponse response,
-      @NonNull final FilterChain chain) throws IOException, ServletException {
+      @NonNull HttpServletRequest request,
+      @NonNull HttpServletResponse response,
+      @NonNull FilterChain chain) throws IOException, ServletException {
     try {
-      final String trackId;
+      String trackId;
       if (!StringUtils.isEmpty(requestHeader) &&
           !StringUtils.isEmpty(request.getHeader(requestHeader))) {
         trackId = request.getHeader(requestHeader);
