@@ -1,4 +1,4 @@
-package com.adotcode.framework.http;
+package com.adotcode.framework.response;
 
 /**
  * Http请求统一返回执行接口
@@ -14,5 +14,5 @@ public interface HttpResultExecute<T> {
    * @return T
    * @throws Exception 异常
    */
-  public T execute() throws Exception;
+  T execute() throws Exception;
 }
