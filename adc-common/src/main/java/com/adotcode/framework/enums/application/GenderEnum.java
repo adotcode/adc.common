@@ -1,7 +1,6 @@
 package com.adotcode.framework.enums.application;
 
 import com.adotcode.framework.enums.IEnum;
-import lombok.Getter;
 
 /**
  * 性别
@@ -9,7 +8,6 @@ import lombok.Getter;
  * @author risfeng
  * @date 2019/08/25
  */
-@Getter
 public enum GenderEnum implements IEnum<Integer> {
   /**
    * 未知
@@ -30,7 +28,7 @@ public enum GenderEnum implements IEnum<Integer> {
   /**
    * 男变女
    */
-  MALE_TO_feMALE(6, "application.enum.application.gender.maleToFemale"),
+  MALE_TO_FEMALE(6, "application.enum.application.gender.maleToFemale"),
   /**
    * 未说明的
    */
@@ -51,6 +49,11 @@ public enum GenderEnum implements IEnum<Integer> {
     this.displayName = displayName;
   }
 
+  /**
+   * 获取值
+   *
+   * @return {@link Integer}-枚举值
+   */
   @Override
   public Integer getValue() {
     return value;
@@ -66,7 +69,11 @@ public enum GenderEnum implements IEnum<Integer> {
     return name();
   }
 
-
+  /**
+   * 获取枚举描述值
+   *
+   * @return {@link String}-枚举描述
+   */
   @Override
   public String getDisplayName() {
     return displayName;

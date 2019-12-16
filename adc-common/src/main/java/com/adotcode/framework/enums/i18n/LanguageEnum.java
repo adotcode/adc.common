@@ -1,7 +1,6 @@
 package com.adotcode.framework.enums.i18n;
 
 import com.adotcode.framework.enums.IEnum;
-import lombok.Getter;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.util.StringUtils;
 
@@ -11,7 +10,6 @@ import org.springframework.util.StringUtils;
  * @author risfeng
  * @date 2019/07/30
  */
-@Getter
 public enum LanguageEnum implements IEnum<String> {
   /**
    * 美式英文
@@ -106,7 +104,7 @@ public enum LanguageEnum implements IEnum<String> {
    */
   @Override
   public String getValue() {
-    return this.language;
+    return language;
   }
 
   /**
@@ -119,6 +117,11 @@ public enum LanguageEnum implements IEnum<String> {
     return name();
   }
 
+  /**
+   * 获取枚举描述值
+   *
+   * @return {@link String}-枚举描述
+   */
   @Override
   public String getDisplayName() {
     return displayName;

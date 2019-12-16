@@ -8,9 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.MDC;
 import org.springframework.lang.NonNull;
-import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 /**
@@ -21,10 +21,19 @@ import org.springframework.web.filter.OncePerRequestFilter;
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class LogFilter extends OncePerRequestFilter {
+public class MdcLogFilter extends OncePerRequestFilter {
 
-  private String responseHeader;
-  private String requestHeader;
+  /**
+   * 请求响应头链路跟踪Key名称
+   */
+  private String responseHeaderKey;
+  /**
+   * 上游请求头所携带的链路跟踪Key名称
+   */
+  private String requestHeaderKey;
+  /**
+   * 记录日志的跟踪Key名称
+   */
   private String mdcTrackKey;
 
   @Override
@@ -34,15 +43,15 @@ public class LogFilter extends OncePerRequestFilter {
       @NonNull FilterChain chain) throws IOException, ServletException {
     try {
       String trackId;
-      if (!StringUtils.isEmpty(requestHeader) &&
-          !StringUtils.isEmpty(request.getHeader(requestHeader))) {
-        trackId = request.getHeader(requestHeader);
+      if (StringUtils.isNotBlank(requestHeaderKey) &&
+          StringUtils.isNotBlank(request.getHeader(requestHeaderKey))) {
+        trackId = request.getHeader(requestHeaderKey);
       } else {
         trackId = UUID.randomUUID().toString().replace("-", "");
       }
       MDC.put(mdcTrackKey, trackId);
-      if (!StringUtils.isEmpty(responseHeader)) {
-        response.addHeader(responseHeader, trackId);
+      if (StringUtils.isNotBlank(responseHeaderKey)) {
+        response.addHeader(responseHeaderKey, trackId);
       }
       chain.doFilter(request, response);
     } finally {

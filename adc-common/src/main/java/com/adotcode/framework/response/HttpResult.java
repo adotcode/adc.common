@@ -48,6 +48,11 @@ public class HttpResult<T> implements Serializable {
   private T body;
 
   /**
+   * error  details
+   */
+  private ErrorDetailResult error;
+
+  /**
    * 结果返回
    *
    * @param execute 执行器
@@ -97,6 +102,13 @@ public class HttpResult<T> implements Serializable {
     this.code = code;
     this.message = message;
     this.body = body;
+  }
+
+  public HttpResult(int status, String code, String message, ErrorDetailResult errorDetailResult) {
+    this.status = status;
+    this.code = code;
+    this.message = message;
+    this.error = errorDetailResult;
   }
 
   /**
@@ -171,5 +183,31 @@ public class HttpResult<T> implements Serializable {
         HttpResultEnum.FAILED.getName(),
         message,
         null);
+  }
+
+  /**
+   * 错误结果返回
+   *
+   * @return HttpResult
+   */
+  public static HttpResult<?> fail(ErrorDetailResult errorResult) {
+    return new HttpResult<>(
+        HttpStatus.EXPECTATION_FAILED.value(),
+        HttpResultEnum.FAILED.getName(),
+        I18nMessageUtils.translate(HttpResultEnum.FAILED.getDisplayName()),
+        errorResult);
+  }
+
+  /**
+   * 错误结果返回
+   *
+   * @return HttpResult
+   */
+  public static HttpResult<?> fail(String code, String message, ErrorDetailResult errorResult) {
+    return new HttpResult<>(
+        HttpStatus.EXPECTATION_FAILED.value(),
+        code,
+        message,
+        errorResult);
   }
 }

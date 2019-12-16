@@ -7,6 +7,7 @@ buildscript {
         commonsLang3 = '3.9'
         junit5Version = '5.5.0'
         lombok = '1.18.10'
+        googleCodeFindbugs = '3.0.1'
     }
     repositories {
         mavenLocal()
@@ -60,6 +61,7 @@ subprojects {
         compile("org.springframework.boot:spring-boot-starter-web:$springBootVersion")
         // Apache Commons
         compile("org.apache.commons:commons-lang3:$commonsLang3")
+        compile("com.google.code.findbugs:annotations:$googleCodeFindbugs")
         // 单元测试
         testCompile("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
         testCompile("org.junit:junit-bom:${junit5Version}")

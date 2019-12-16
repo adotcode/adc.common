@@ -1,7 +1,6 @@
 package com.adotcode.framework.enums.application;
 
 import com.adotcode.framework.enums.IEnum;
-import lombok.Getter;
 
 /**
  * 标识：是/否、启用/禁用等枚举
@@ -9,7 +8,6 @@ import lombok.Getter;
  * @author risfeng
  * @date 2019/08/25
  */
-@Getter
 public enum YesOrNoEnum implements IEnum<Integer> {
 
   /**
@@ -37,6 +35,11 @@ public enum YesOrNoEnum implements IEnum<Integer> {
     this.displayName = displayName;
   }
 
+  /**
+   * 获取值
+   *
+   * @return {@link Integer}-枚举值
+   */
   @Override
   public Integer getValue() {
     return value;
@@ -52,7 +55,11 @@ public enum YesOrNoEnum implements IEnum<Integer> {
     return name();
   }
 
-
+  /**
+   * 获取枚举描述值
+   *
+   * @return {@link String}-枚举描述
+   */
   @Override
   public String getDisplayName() {
     return displayName;
