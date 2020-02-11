@@ -36,8 +36,8 @@ public abstract class BaseException extends RuntimeException {
    */
   BaseException(IEnum<?> httpResultEnum) {
     super(httpResultEnum.getDisplayName());
-    this.code = httpResultEnum.getValue().toString();
-    this.message = httpResultEnum.getDisplayName();
+    code = httpResultEnum.getValue().toString();
+    message = httpResultEnum.getDisplayName();
   }
 
   /**
@@ -48,7 +48,7 @@ public abstract class BaseException extends RuntimeException {
    */
   BaseException(IEnum<?> httpResultEnum, String message) {
     super(httpResultEnum.getDisplayName());
-    this.code = httpResultEnum.getValue().toString();
+    code = httpResultEnum.getValue().toString();
     this.message = message;
   }
 
@@ -58,7 +58,7 @@ public abstract class BaseException extends RuntimeException {
    */
   BaseException(IEnum<?> httpResultEnum, Exception e) {
     super(e);
-    this.code = httpResultEnum.getValue().toString();
-    this.message = httpResultEnum.getDisplayName();
+    code = httpResultEnum.getValue().toString();
+    message = httpResultEnum.getDisplayName();
   }
 }

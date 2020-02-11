@@ -1,6 +1,6 @@
 description = 'Common Parent'
 def jdkVersion = '12.0'
-def adcFrameWorkVersion = '0.0.5-SNAPSHOT'
+def adcFrameWorkVersion = '0.0.6-SNAPSHOT'
 buildscript {
     ext {
         springBootVersion = '2.2.1.RELEASE'
