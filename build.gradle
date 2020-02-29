@@ -6,7 +6,7 @@ buildscript {
         springBootVersion = '2.2.1.RELEASE'
         commonsLang3 = '3.9'
         junit5Version = '5.5.0'
-        lombok = '1.18.10'
+        lombok = '1.18.12'
         googleCodeFindbugs = '3.0.1'
     }
     repositories {
@@ -56,8 +56,19 @@ subprojects {
             }
         }
     }
+    //配置
+    configurations {
+        developmentOnly
+        runtimeClasspath {
+            extendsFrom developmentOnly
+        }
+        compileOnly {
+            extendsFrom annotationProcessor
+        }
+    }
     dependencies {
-        compile("org.projectlombok:lombok:$lombok")
+        compileOnly("org.projectlombok:lombok:$lombok")
+        annotationProcessor("org.projectlombok:lombok:$lombok")
         compile("org.springframework.boot:spring-boot-starter-web:$springBootVersion")
         // Apache Commons
         compile("org.apache.commons:commons-lang3:$commonsLang3")
